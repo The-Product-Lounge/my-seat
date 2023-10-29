@@ -8,9 +8,6 @@ let theme = createTheme({
   },
   components: {
     MuiTextField: {
-      defaultProps: {
-        variant: "outlined",
-      },
       styleOverrides: {
         root: {
           "& .MuiFormHelperText-root.Mui-error": {

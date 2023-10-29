@@ -1,7 +1,13 @@
+"use client";
+import InputAdornment from "@mui/material/InputAdornment";
+import IconButton from "@mui/material/IconButton";
 import MuiTextfield, { OutlinedTextFieldProps } from "@mui/material/TextField";
-import React from "react";
-import { Password } from "./Password.component";
+import React, { useState } from "react";
 import { HelperTextError } from "./HelperTextError.component";
+
+import closedEye from "@/../public/images/inputs/textfield/ClosedEye.svg";
+import openEye from "@/../public/images/inputs/textfield/OpenEye.svg";
+import Image from "next/image";
 
 type TextFieldBaseProps = Omit<
   OutlinedTextFieldProps,
@@ -44,6 +50,43 @@ export const Textfield = ({ error, type, ...props }: TextfieldProps) => {
         {...props}
         error={!!error}
         helperText={error || undefined}
+      />
+    </>
+  );
+};
+
+/**
+ * Password textfield with toggle to show/hide password on click
+ * @param {TextfieldProps} props
+ * @returns {React.ReactElement}
+ */
+const Password = ({ error, type, ...props }: TextfieldProps) => {
+  const [showPassword, setShowPassword] = useState(false);
+  return (
+    <>
+      <MuiTextfield
+        {...props}
+        error={!!error}
+        helperText={error || undefined}
+        type={showPassword ? "text" : "password"}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={() => setShowPassword(!showPassword)}
+                onMouseDown={(event) => event.preventDefault()}
+                edge="end"
+              >
+                {showPassword ? (
+                  <Image src={closedEye} alt="closed eye" />
+                ) : (
+                  <Image src={openEye} alt="open eye" />
+                )}
+              </IconButton>
+            </InputAdornment>
+          ),
+        }}
       />
     </>
   );
