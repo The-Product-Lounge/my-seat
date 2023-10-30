@@ -38,7 +38,7 @@ export const TextfieldWithDefaultTextAndLabel: Story = {
 export const TextfieldWithErrorAndLabel: Story = {
   args: {
     label: "Label",
-    error: "Error",
+    error: "Incorrect password, are you a spy?",
   },
 };
 

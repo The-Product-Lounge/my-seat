@@ -3,10 +3,6 @@ import { withThemeFromJSXProvider } from "@storybook/addon-themes";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { theme } from "../src/lib/providers/theme/Theme.theme";
 
-import "@fontsource/roboto/300.css";
-import "@fontsource/roboto/400.css";
-import "@fontsource/roboto/500.css";
-import "@fontsource/roboto/700.css";
 import "@/app/globals.css";
 
 export const decorators = [
