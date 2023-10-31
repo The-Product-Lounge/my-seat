@@ -1,7 +1,10 @@
 "use client";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
-import MuiTextfield, { OutlinedTextFieldProps } from "@mui/material/TextField";
+import MuiTextfield, {
+  OutlinedTextFieldProps,
+  TextFieldProps as MuiTextFieldProps,
+} from "@mui/material/TextField";
 import React, { useState } from "react";
 import { HelperTextError } from "./HelperTextError.component";
 
@@ -9,10 +12,7 @@ import closedEye from "@/../public/images/inputs/textfield/ClosedEye.svg";
 import openEye from "@/../public/images/inputs/textfield/OpenEye.svg";
 import Image from "next/image";
 
-type TextFieldBaseProps = Omit<
-  OutlinedTextFieldProps,
-  "variant" | "error" | "helperText"
->;
+type TextFieldBaseProps = Omit<OutlinedTextFieldProps, "variant" | "error">;
 
 export interface TextfieldProps extends TextFieldBaseProps {
   /**
@@ -38,19 +38,21 @@ export const Textfield = ({ error, type, ...props }: TextfieldProps) => {
   if (typeof error === "string")
     error = <HelperTextError>{error}</HelperTextError>;
 
+  const allProps: MuiTextFieldProps = {
+    ...props,
+    error: !!error,
+    helperText: error,
+  };
+
   if (type === "password")
     return (
       <>
-        <Password {...props} error={error} type={type} />
+        <Password {...allProps} />
       </>
     );
   return (
     <>
-      <MuiTextfield
-        {...props}
-        error={!!error}
-        helperText={error || undefined}
-      />
+      <MuiTextfield {...allProps} />
     </>
   );
 };
@@ -60,14 +62,12 @@ export const Textfield = ({ error, type, ...props }: TextfieldProps) => {
  * @param {TextfieldProps} props
  * @returns {React.ReactElement}
  */
-const Password = ({ error, type, ...props }: TextfieldProps) => {
+const Password = (props: MuiTextFieldProps) => {
   const [showPassword, setShowPassword] = useState(false);
   return (
     <>
       <MuiTextfield
         {...props}
-        error={!!error}
-        helperText={error || undefined}
         type={showPassword ? "text" : "password"}
         InputProps={{
           endAdornment: (

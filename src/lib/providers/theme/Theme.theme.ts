@@ -43,8 +43,28 @@ let theme = createTheme({
     error: {
       main: "#FF3B3B",
     },
+    primary: {
+      main: "#28293D",
+    },
   },
   components: {
+    MuiButton: {
+      defaultProps: {
+        variant: "contained",
+      },
+      styleOverrides: {
+        root: {
+          fontSize: "14px",
+          borderRadius: "8px",
+          padding: "14px 50px",
+          "&.Mui-disabled": {
+            color: "#9899A7",
+            backgroundColor: "#E4E4EB",
+            border: "1px solid #EBEBEB",
+          },
+        },
+      },
+    },
     MuiTextField: {
       styleOverrides: {
         root: {
