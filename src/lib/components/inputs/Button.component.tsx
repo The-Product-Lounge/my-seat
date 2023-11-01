@@ -40,10 +40,11 @@ export interface ButtonProps extends MuiButtonProps {
 
 const StyledButton: React.FC<ButtonProps> = styled(MuiButton, {
   shouldForwardProp: (prop) => prop !== "fontWeight",
-})<ButtonProps>(({ fontWeight }) => ({
-  ...((fontWeight === "semiBold" && {
-    fontWeight: 600,
-  }) || { fontWeight }),
+})<ButtonProps>(({ fontWeight, theme }) => ({
+  // choose the font weight based on the prop, or default to semiBold
+  ...((fontWeight === "bold" && theme.typography.poppinsBold) ||
+    (fontWeight === "normal" && theme.typography.poppins) ||
+    theme.typography.poppinsSemiBold),
 }));
 
 export const Button: React.FC<ButtonProps> = ({
@@ -53,11 +54,7 @@ export const Button: React.FC<ButtonProps> = ({
   fontWeight,
   ...props
 }) => (
-  <StyledButton
-    {...props}
-    disabled={isLoading ?? disabled}
-    fontWeight={fontWeight ?? "semiBold"}
-  >
+  <StyledButton {...props} disabled={isLoading ?? disabled}>
     {isLoading ? <CircularProgress size={24} /> : children}
   </StyledButton>
 );
