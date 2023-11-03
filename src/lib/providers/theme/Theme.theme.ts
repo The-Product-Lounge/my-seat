@@ -22,8 +22,6 @@ declare module "@mui/material/Typography" {
   }
 }
 
-console.log(poppins);
-
 let theme = createTheme({
   typography: {
     fontFamily: poppins.style.fontFamily,

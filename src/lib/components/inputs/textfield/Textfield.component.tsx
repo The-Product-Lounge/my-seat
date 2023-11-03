@@ -14,7 +14,7 @@ import Image from "next/image";
 
 type TextFieldBaseProps = Omit<OutlinedTextFieldProps, "variant" | "error">;
 
-export interface TextfieldProps extends TextFieldBaseProps {
+export interface TextFieldProps extends TextFieldBaseProps {
   /**
    * Error message to display below the textfield.
    * If not provided, no error will be displayed.
@@ -32,62 +32,59 @@ export interface TextfieldProps extends TextFieldBaseProps {
   error?: string | React.ReactNode;
 }
 
-export const Textfield = ({ error, type, ...props }: TextfieldProps) => {
-  // if error is string use HelperTextError component to display error message
-  // if error is React node, display it as is
-  if (typeof error === "string")
-    error = <HelperTextError>{error}</HelperTextError>;
+export const TextField = React.forwardRef(
+  (
+    { error, type, ...props }: TextFieldProps,
+    ref: React.Ref<HTMLInputElement>,
+  ) => {
+    const [showPassword, setShowPassword] = useState(false);
+    const handleTogglePassword = () => setShowPassword(!showPassword);
 
-  const allProps: MuiTextFieldProps = {
-    ...props,
-    error: !!error,
-    helperText: error,
-  };
+    // if error is string use HelperTextError component to display error message
+    // if error is React node, display it as is
+    if (typeof error === "string")
+      error = <HelperTextError>{error}</HelperTextError>;
 
-  if (type === "password")
+    const allProps: MuiTextFieldProps = {
+      ...props,
+      error: !!error,
+      helperText: error,
+    };
+
     return (
       <>
-        <Password {...allProps} />
+        <MuiTextfield
+          {...allProps}
+          ref={ref}
+          // Check if type is password and if showPassword is true, then change type to text
+          type={type === "password" && showPassword ? "text" : type}
+          // If type is password, add an eye icon to toggle password visibility
+          InputProps={
+            type === "password"
+              ? {
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleTogglePassword}
+                        onMouseDown={(event) => event.preventDefault()}
+                        edge="end"
+                      >
+                        {showPassword ? (
+                          <Image src={closedEye} alt="closed eye" />
+                        ) : (
+                          <Image src={openEye} alt="open eye" />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }
+              : undefined
+          }
+        />
       </>
     );
-  return (
-    <>
-      <MuiTextfield {...allProps} />
-    </>
-  );
-};
+  },
+);
 
-/**
- * Password textfield with toggle to show/hide password on click
- * @param {TextfieldProps} props
- * @returns {React.ReactElement}
- */
-const Password = (props: MuiTextFieldProps) => {
-  const [showPassword, setShowPassword] = useState(false);
-  return (
-    <>
-      <MuiTextfield
-        {...props}
-        type={showPassword ? "text" : "password"}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <IconButton
-                aria-label="toggle password visibility"
-                onClick={() => setShowPassword(!showPassword)}
-                onMouseDown={(event) => event.preventDefault()}
-                edge="end"
-              >
-                {showPassword ? (
-                  <Image src={closedEye} alt="closed eye" />
-                ) : (
-                  <Image src={openEye} alt="open eye" />
-                )}
-              </IconButton>
-            </InputAdornment>
-          ),
-        }}
-      />
-    </>
-  );
-};
+TextField.displayName = "TextField";
