@@ -5,12 +5,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { Button } from "@/lib/components/inputs/Button.component";
 import { TextField } from "@/lib/components/inputs/textfield/Textfield.component";
-// import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
-// import { signIn } from "next-auth/react";
+import { signIn } from "next-auth/react";
 
 export const LoginForm = () => {
-  //   const dispatch = useDispatch();
   const router = useRouter();
 
   const validationSchema = Yup.object().shape({
@@ -28,17 +26,17 @@ export const LoginForm = () => {
   } = useForm({ resolver: yupResolver(validationSchema) });
 
   const onSubmit = async (data: { email: string; password: string }) => {
-    // const res = await signIn("credentials", {
-    //   redirect: false,
-    //   email: data.email,
-    //   password: data.password,
-    // });
-    // if (res?.error)
-    //   setError("password", {
-    //     type: "server",
-    //     message: "Incorrect password, are you a spy?",
-    //   });
-    // else router.push("/event-settings");
+    const res = await signIn("credentials", {
+      redirect: false,
+      email: data.email,
+      password: data.password,
+    });
+    if (res?.error)
+      setError("password", {
+        type: "server",
+        message: "Incorrect password, are you a spy?",
+      });
+    else router.push("/event-settings");
   };
 
   return (
