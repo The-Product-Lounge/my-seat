@@ -1,7 +1,9 @@
-import Image from "next/image";
-import styles from "./page.module.css";
-import { TextField } from "@/lib/components/inputs/textfield/Textfield.component";
+import { LoginForm } from "./LoginForm";
 
 export default function Home() {
-  return <TextField label="Label" error="blkflkjflkjfds" />;
+  return (
+    <>
+      <LoginForm />
+    </>
+  );
 }

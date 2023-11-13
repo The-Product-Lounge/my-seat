@@ -1,7 +1,16 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
+const email = process.env.EMAIL;
+const password = process.env.PASSWORD;
+if (!email || !password) {
+  throw new Error("Email or password is not set");
+}
+
 const handler = NextAuth({
+  pages: {
+    signIn: "/",
+  },
   session: {
     strategy: "jwt",
   },
@@ -17,7 +26,11 @@ const handler = NextAuth({
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
+        console.log(credentials);
         if (!credentials?.email || !credentials.password) {
+          return null;
+        }
+        if (credentials.email !== email || credentials.password !== password) {
           return null;
         }
         const user = { id: "1", name: "Admin", email: "admin@admin.com" };
