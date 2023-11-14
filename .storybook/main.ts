@@ -28,6 +28,7 @@ const config: StorybookConfig = {
     if (config.resolve) {
       config.resolve.alias = {
         ...config.resolve.alias,
+        "next-auth/react": require.resolve("../__mocks__/next-auth.ts"),
         "@": path.resolve(__dirname, "../src/"),
       };
     }
