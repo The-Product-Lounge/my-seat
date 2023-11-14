@@ -40,7 +40,7 @@ export const LoginForm = () => {
   };
 
   return (
-    <form>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <Grid
         container
         direction={"column"}
@@ -72,7 +72,7 @@ export const LoginForm = () => {
             variant="contained"
             size="large"
             disabled={!isDirty}
-            onClick={handleSubmit(onSubmit)}
+            type="submit"
             isLoading={isSubmitting}
           >
             Open sesami!
