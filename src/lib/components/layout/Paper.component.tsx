@@ -1,3 +1,4 @@
+"use client";
 import { styled } from "@mui/material/styles";
 import React from "react";
 
@@ -24,7 +25,7 @@ const LogoPaper = styled("div")({
  * @param variant "logo" | "login"
  * @param children React.ReactNode
  */
-interface PaperProps {
+interface PaperProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * the variant to use
    * @type "logo" | "login"
@@ -44,7 +45,7 @@ interface PaperProps {
  * @param props PaperProps {variant: "logo" | "login", children: React.ReactNode}
  * @returns React.ReactNode of the Paper component with the specified variant and children
  */
-export const Paper = (props: PaperProps) => {
-  if (props.variant === "logo") return <LogoPaper>{props.children}</LogoPaper>;
-  return <LoginPaper>{props.children}</LoginPaper>;
+export const Paper = ({ children, variant, ...props }: PaperProps) => {
+  if (variant === "logo") return <LogoPaper {...props}>{children}</LogoPaper>;
+  return <LoginPaper {...props}>{children}</LoginPaper>;
 };
