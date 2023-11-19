@@ -2,7 +2,6 @@ let nextJson: any;
 
 export const signIn = async (params: any) => {
   if (nextJson) {
-    console.log(params);
     // Simulate a delay in response
     if (nextJson.timeout)
       await new Promise((resolve) =>
