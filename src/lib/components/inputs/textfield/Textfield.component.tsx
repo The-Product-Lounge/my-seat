@@ -56,6 +56,9 @@ export const TextField = React.forwardRef(
         <MuiTextfield
           {...allProps}
           ref={ref}
+          FormHelperTextProps={{
+            component: "div",
+          }}
           // Check if type is password and if showPassword is true, then change type to text
           type={type === "password" && showPassword ? "text" : type}
           // If type is password, add an eye icon to toggle password visibility
