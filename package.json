@@ -58,8 +58,9 @@
     "typescript": "^5"
   },
   "lint-staged": {
-    "{src,test}/**/*.{js,ts,jsx,tsx}": [
+    "{src}/**/*.{js,ts,jsx,tsx}": [
       "eslint --fix",
+      "jest --bail --findRelatedTests",
       "prettier --write --ignore-unknown"
     ],
     "*": "prettier --write --ignore-unknown"
