@@ -1,6 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Button, ButtonProps } from "@/lib/components/inputs/Button.component";
+import Image from "next/image";
+
+import CreateEventImg from "@/../public/images/events/create event.svg";
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
@@ -43,5 +46,13 @@ export const ButtonWithFullWidth: Story = {
   args: {
     children: "Open sesami!",
     fullWidth: true,
+  },
+};
+
+export const SecondaryButtonWithIcon: Story = {
+  args: {
+    children: "Create Event",
+    startIcon: <Image src={CreateEventImg} alt="Create Event" />,
+    color: "secondary",
   },
 };

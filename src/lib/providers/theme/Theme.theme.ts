@@ -44,6 +44,9 @@ let theme = createTheme({
     primary: {
       main: "#28293D",
     },
+    secondary: {
+      main: "#FFFFFF",
+    },
   },
   components: {
     MuiButton: {
@@ -54,7 +57,19 @@ let theme = createTheme({
         root: {
           fontSize: "14px",
           borderRadius: "8px",
-          padding: "14px 50px",
+          paddingTop: "14px",
+          paddingBottom: "14px",
+          "&.MuiButton-sizeMedium": {
+            paddingLeft: "24px",
+            paddingRight: "24px",
+          },
+          "&.MuiButton-sizeLarge": {
+            paddingLeft: "50px",
+            paddingRight: "50px",
+          },
+          "&.MuiButton-containedSecondary": {
+            color: "#28293D",
+          },
           "&.Mui-disabled": {
             color: "#9899A7",
             backgroundColor: "#E4E4EB",

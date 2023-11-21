@@ -60,7 +60,7 @@
   "lint-staged": {
     "{src}/**/*.{js,ts,jsx,tsx}": [
       "eslint --fix",
-      "jest --bail --findRelatedTests",
+      "jest --bail --findRelatedTests --passWithNoTests",
       "prettier --write --ignore-unknown"
     ],
     "*": "prettier --write --ignore-unknown"
