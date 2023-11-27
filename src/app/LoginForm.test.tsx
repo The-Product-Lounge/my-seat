@@ -2,7 +2,7 @@ import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import userEvents, { UserEvent } from "@testing-library/user-event";
 import { useRouter } from "next/navigation";
-import { LoginForm } from "@/app/LoginForm";
+import { LoginForm } from "@/app/LoginForm.component";
 import { signIn } from "next-auth/react";
 
 // ----------------------------------------

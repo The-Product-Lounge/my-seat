@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
 
-import { LoginForm } from "@/app/LoginForm";
+import { LoginForm } from "@/app/LoginForm.component";
 import { decorator } from "@/../__mocks__/next-auth";
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export

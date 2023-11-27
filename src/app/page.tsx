@@ -1,5 +1,5 @@
 import { Paper } from "@/lib/components/layout/Paper.component";
-import { LoginForm } from "./LoginForm";
+import { LoginForm } from "./LoginForm.component";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
