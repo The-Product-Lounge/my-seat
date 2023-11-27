@@ -9,6 +9,7 @@ const meta = {
     nextjs: {
       appDirectory: true,
     },
+    layout: "fullscreen",
   },
   decorators: [decorator],
   title: "Pages/Root/HomePage",
