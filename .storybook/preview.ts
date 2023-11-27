@@ -10,7 +10,7 @@ const customViewports = {
   iphone14promax: {
     name: "iPhone 14 Pro Max",
     styles: {
-      height: "852px",
+      height: "678px",
       width: "393px",
     },
     type: "mobile",
