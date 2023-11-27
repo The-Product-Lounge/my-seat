@@ -4,6 +4,7 @@ import Grid from "@mui/material/Grid";
 
 import LogoImg from "@/../public/images/Favicon.svg";
 import CreateEventImg from "@/../public/images/events/create event.svg";
+import Link from "next/link";
 
 export const Toolbar = () => {
   return (
@@ -39,12 +40,18 @@ export const Toolbar = () => {
           xs={2}
           sx={{
             display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
             justifyContent: "center",
           }}
         >
-          <Image src={CreateEventImg} alt="Logo" width={28} height={28} />
+          <Link
+            style={{
+              display: "flex",
+              alignItems: "center",
+            }}
+            href="/event-settings/create-event"
+          >
+            <Image src={CreateEventImg} alt="Logo" width={28} height={28} />
+          </Link>
         </Grid>
       </Grid>
     </MuiToolbar>
