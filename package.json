@@ -58,7 +58,7 @@
     "vitest": "^0.34.6"
   },
   "lint-staged": {
-    "{src}/**/*.{js,ts,jsx,tsx}": [
+    "src/**/*.{js,ts,jsx,tsx}": [
       "eslint --fix",
       "prettier --write --ignore-unknown",
       "vitest related --run"
