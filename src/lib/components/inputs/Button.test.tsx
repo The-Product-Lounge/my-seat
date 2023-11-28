@@ -1,7 +1,6 @@
+import { test, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
-
 import { composeStories } from "@storybook/react";
-import "@testing-library/jest-dom";
 
 import * as stories from "@/stories/components/inputs/Button.stories";
 

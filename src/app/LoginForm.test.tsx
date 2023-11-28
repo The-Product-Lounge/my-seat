@@ -1,21 +1,21 @@
-import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import userEvents, { UserEvent } from "@testing-library/user-event";
 import { useRouter } from "next/navigation";
 import { LoginForm } from "@/app/LoginForm.component";
 import { signIn } from "next-auth/react";
+import { vi, test, expect, describe, beforeEach, afterEach } from "vitest";
 
 // ----------------------------------------
 // ------------- Mocks --------------------
 // ----------------------------------------
-jest.mock("next/navigation", () => ({
-  useRouter: jest.fn().mockReturnValue({
-    push: jest.fn(),
+vi.mock("next/navigation", () => ({
+  useRouter: vi.fn().mockReturnValue({
+    push: vi.fn(),
   }),
 }));
 
-jest.mock("next-auth/react", () => ({
-  signIn: jest.fn(),
+vi.mock("next-auth/react", () => ({
+  signIn: vi.fn(),
 }));
 
 // ----------------------------------------
@@ -57,7 +57,7 @@ describe("LoginForm", () => {
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   test("login in with valid credentials", async () => {
@@ -114,7 +114,7 @@ describe("LoginForm", () => {
 
   test("login with invalid credentials show error", async () => {
     render(<LoginForm />);
-    const signInMocked = jest.mocked(signIn);
+    const signInMocked = vi.mocked(signIn);
     signInMocked.mockReturnValueOnce({ error: "Invalid credentials" } as any);
 
     const email = "bla@bla.bla";
