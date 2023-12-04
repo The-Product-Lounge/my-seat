@@ -1,67 +1,123 @@
+/**
+ * @file This file contains the storybook configuration for the TextField component.
+ */
+
 import type { Meta, StoryObj } from "@storybook/react";
 
-import {
-  TextField as SrcTextField,
-  TextFieldProps,
-} from "@/lib/components/inputs/textfield/Textfield.component";
+import { TextField } from "@/lib/components/inputs/textfield/Textfield.component";
 import React from "react";
+import { getCanvas } from "@/stories/helper";
+import { expect, userEvent } from "@storybook/test";
+import { error } from "console";
 
-const TextField: React.FC<
-  TextFieldProps & { ref?: React.Ref<HTMLInputElement> }
-> = (props) => {
-  return <SrcTextField {...props} />;
-};
-
-// More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
   title: "Lib/Inputs/Textfield",
   component: TextField,
-  parameters: {
-    // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
-    // layout: "centered",
-  },
-  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ["autodocs"],
   argTypes: {
     error: { control: "text" },
   },
-  // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
 } satisfies Meta<typeof TextField>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// stories on textfield with label without default value, textfield with default value and label, textfield with error
+/**
+ * Story for a Textfield with only a label.
+ */
 export const TextfieldWithOnlyLabel: Story = {
+  play: async ({ canvasElement, args }) => {
+    const canvas = getCanvas(canvasElement);
+    expect(canvas.queryByLabelText(args.label as string)).toBeInTheDocument();
+    const textfield =
+      args.type === "password"
+        ? canvas.getByLabelText(args.label as string)
+        : canvas.getByRole("textbox");
+    expect(textfield).toBeEnabled();
+    let value = "";
+    if (args.defaultValue) {
+      value = args.defaultValue as string;
+    }
+    expect(textfield).toHaveValue(value);
+    if (args.error) {
+      expect(canvas.queryByText(args.error as string)).toBeInTheDocument();
+      expect(textfield).toBeInvalid();
+      expect(canvas.queryByAltText("Error Icon")).toBeInTheDocument();
+    }
+
+    // Check if the textfield is focused when clicked
+    await userEvent.click(textfield);
+    expect(textfield).toHaveFocus();
+
+    // Check textfield value when typing
+    await userEvent.type(textfield, "Hello World");
+    expect(textfield).toHaveValue(value + "Hello World");
+  },
   args: {
     label: "Label",
   },
 };
 
+/**
+ * Story for a Textfield with default text and a label.
+ */
 export const TextfieldWithDefaultTextAndLabel: Story = {
+  play: async (context) => {
+    await TextfieldWithOnlyLabel.play?.(context);
+  },
   args: {
     defaultValue: "Default Text",
     label: "Label",
   },
 };
 
+/**
+ * Story for a Textfield with an error message and a label.
+ */
 export const TextfieldWithErrorAndLabel: Story = {
+  play: async (context) => {
+    await TextfieldWithOnlyLabel.play?.(context);
+  },
   args: {
     label: "Label",
     error: "Incorrect password, are you a spy?",
   },
 };
 
-// password textfield with label without default value, password textfield with default value and label, password textfield with error
-
+/**
+ * Story for a password Textfield with only a label.
+ */
 export const PasswordTextfieldWithOnlyLabel: Story = {
+  play: async (context) => {
+    await TextfieldWithOnlyLabel.play?.(context);
+    const { canvasElement, args } = context;
+    const canvas = getCanvas(canvasElement);
+    const textfield = canvas.getByLabelText(args.label as string);
+
+    // Check if the password is hidden
+    expect(textfield).toHaveAttribute("type", "password");
+
+    // Check if the password is visible
+    await userEvent.click(canvas.getByLabelText("toggle password visibility"));
+    expect(textfield).toHaveAttribute("type", "text");
+
+    // Check if the password is hidden again
+    await userEvent.click(canvas.getByLabelText("toggle password visibility"));
+    expect(textfield).toHaveAttribute("type", "password");
+  },
   args: {
     label: "Label",
     type: "password",
   },
 };
 
+/**
+ * Story for a password Textfield with default text and a label.
+ */
 export const PasswordTextfieldWithDefaultTextAndLabel: Story = {
+  play: async (context) => {
+    await PasswordTextfieldWithOnlyLabel.play?.(context);
+  },
   args: {
     defaultValue: "Default Text",
     label: "Label",
@@ -69,7 +125,13 @@ export const PasswordTextfieldWithDefaultTextAndLabel: Story = {
   },
 };
 
+/**
+ * Story for a password Textfield with an error message and a label.
+ */
 export const PasswordTextfieldWithErrorAndLabel: Story = {
+  play: async (context) => {
+    await PasswordTextfieldWithOnlyLabel.play?.(context);
+  },
   args: {
     label: "Label",
     error: "Error",

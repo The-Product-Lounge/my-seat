@@ -1,7 +1,6 @@
 // button.component.tsx
 import MuiButton, { ButtonProps as MuiButtonProps } from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
-import { styled } from "@mui/material/styles";
 
 // type ButtonBaseProps = Pick<
 //   MuiButtonProps,
@@ -17,12 +16,12 @@ import { styled } from "@mui/material/styles";
 export interface ButtonProps extends MuiButtonProps {
   /**
    * Font weight of the button
-   * @default "semiBold"
-   * @type "bold" | "normal" | "semiBold"
+   * @default "600"
+   * @type "bold" | "normal" | "600"
    * @memberof ButtonProps
    * @optional
    */
-  fontWeight?: "bold" | "normal" | "semiBold";
+  fontWeight?: "bold" | "normal" | "600";
 
   /**
    * If true, the button will show a CircularProgress instead of the children
@@ -38,23 +37,25 @@ export interface ButtonProps extends MuiButtonProps {
   isLoading?: boolean;
 }
 
-const StyledButton: React.FC<ButtonProps> = styled(MuiButton, {
-  shouldForwardProp: (prop) => prop !== "fontWeight",
-})<ButtonProps>(({ fontWeight, theme }) => ({
-  // choose the font weight based on the prop, or default to semiBold
-  ...((fontWeight === "bold" && theme.typography.poppinsBold) ||
-    (fontWeight === "normal" && theme.typography.poppins) ||
-    theme.typography.poppinsSemiBold),
-}));
-
+/**
+ * Button component
+ * @param {ButtonProps} props
+ * @returns {React.ReactElement}
+ */
 export const Button: React.FC<ButtonProps> = ({
   children,
   isLoading,
-  disabled,
   fontWeight,
+  disabled,
   ...props
 }) => (
-  <StyledButton {...props} disabled={isLoading ?? disabled}>
+  <MuiButton
+    {...props}
+    sx={{
+      fontWeight: fontWeight ?? "600",
+    }}
+    disabled={isLoading ?? disabled}
+  >
     {isLoading ? <CircularProgress size={24} /> : children}
-  </StyledButton>
+  </MuiButton>
 );

@@ -9,6 +9,7 @@ import Link from "next/link";
 export const Toolbar = () => {
   return (
     <MuiToolbar
+      role="toolbar"
       sx={{
         borderBottom: "1px solid #E0E0E0",
       }}
@@ -50,7 +51,12 @@ export const Toolbar = () => {
             }}
             href="/event-settings/create-event"
           >
-            <Image src={CreateEventImg} alt="Logo" width={28} height={28} />
+            <Image
+              src={CreateEventImg}
+              alt="Create Event"
+              width={28}
+              height={28}
+            />
           </Link>
         </Grid>
       </Grid>

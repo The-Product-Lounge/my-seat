@@ -1,9 +1,9 @@
-import { Paper } from "@/lib/components/layout/Paper.component";
 import { LoginForm } from "./LoginForm.component";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
 
 import Image from "next/image";
 import logo from "@/../public/images/logo/logo@2x.png";
@@ -31,7 +31,7 @@ export default function Home() {
           <Paper variant="login">
             <Paper
               variant="logo"
-              style={{
+              sx={{
                 position: "absolute",
                 width: 68,
                 height: 68,

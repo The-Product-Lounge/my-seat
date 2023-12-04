@@ -2,11 +2,11 @@ import { test, describe } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { composeStories } from "@storybook/react";
 
-import * as stories from "@/stories/components/inputs/Button.stories";
+import * as stories from "@/stories/components/inputs/TextField.stories";
 
 const StoriesObject = composeStories(stories);
 
-describe("Button", async () => {
+describe("Textfield", async () => {
   for (const [key, story] of Object.entries(StoriesObject)) {
     if (story.play)
       test(`test${story.storyName

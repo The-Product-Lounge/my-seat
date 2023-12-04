@@ -14,6 +14,13 @@ declare module "@mui/material/styles" {
   }
 }
 
+declare module "@mui/material/Paper" {
+  interface PaperPropsVariantOverrides {
+    logo: true;
+    login: true;
+  }
+}
+
 declare module "@mui/material/Typography" {
   interface TypographyPropsVariantOverrides {
     poppins: true;
@@ -24,6 +31,9 @@ declare module "@mui/material/Typography" {
 
 let theme = createTheme({
   typography: {
+    allVariants: {
+      textTransform: "none",
+    },
     fontFamily: poppins.style.fontFamily,
     poppins: {
       fontFamily: poppins.style.fontFamily,
@@ -49,6 +59,32 @@ let theme = createTheme({
     },
   },
   components: {
+    MuiPaper: {
+      variants: [
+        {
+          props: { variant: "logo" },
+          style: {
+            padding: "15px",
+            borderRadius: "12px",
+            backgroundColor: "#fff",
+            border: "0.5px solid #E0E0E0",
+            opacity: "1",
+            filter: "drop-shadow(#0000000F 0px 8px 16px)",
+          },
+        },
+        {
+          props: { variant: "login" },
+          style: {
+            padding: "24px",
+            borderRadius: "16px",
+            backgroundColor: "#fff",
+            border: "0.5px solid #EBEBEB",
+            opacity: "1",
+            filter: "drop-shadow(#0000001A 0px 0.5px 2px)",
+          },
+        },
+      ],
+    },
     MuiButton: {
       defaultProps: {
         variant: "contained",

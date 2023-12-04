@@ -8,14 +8,7 @@ const config: StorybookConfig = {
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "@storybook/addon-themes",
-    {
-      name: "@storybook/addon-storysource",
-      options: {
-        loaderOptions: {
-          injectStoryParameters: false,
-        },
-      },
-    },
+    "@storybook/addon-storysource",
   ],
   framework: {
     name: "@storybook/nextjs",

@@ -40,7 +40,7 @@ export const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form role="form" onSubmit={handleSubmit(onSubmit)}>
       <Grid
         container
         direction={"column"}
