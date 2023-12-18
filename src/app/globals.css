@@ -1,5 +1,5 @@
 /* Remove reveal password button from edge browser in favor of our reveal password button */
 input[type="password"]::-ms-reveal,
 input[type="password"]::-ms-clear {
-  display: none;
+	display: none;
 }

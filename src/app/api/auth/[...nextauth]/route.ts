@@ -4,39 +4,39 @@ import CredentialsProvider from "next-auth/providers/credentials";
 const email = process.env.EMAIL;
 const password = process.env.PASSWORD;
 if (!email || !password) {
-  throw new Error("Email or password is not set");
+	throw new Error("Email or password is not set");
 }
 
 const handler = NextAuth({
-  pages: {
-    signIn: "/",
-  },
-  session: {
-    strategy: "jwt",
-  },
-  providers: [
-    CredentialsProvider({
-      name: "Sign in",
-      credentials: {
-        email: {
-          label: "Email",
-          type: "email",
-          placeholder: "example@example.com",
-        },
-        password: { label: "Password", type: "password" },
-      },
-      async authorize(credentials) {
-        if (!credentials?.email || !credentials.password) {
-          return null;
-        }
-        if (credentials.email !== email || credentials.password !== password) {
-          return null;
-        }
-        const user = { id: "1", name: "Admin", email: "admin@admin.com" };
-        return user;
-      },
-    }),
-  ],
+	pages: {
+		signIn: "/",
+	},
+	session: {
+		strategy: "jwt",
+	},
+	providers: [
+		CredentialsProvider({
+			name: "Sign in",
+			credentials: {
+				email: {
+					label: "Email",
+					type: "email",
+					placeholder: "example@example.com",
+				},
+				password: { label: "Password", type: "password" },
+			},
+			async authorize(credentials) {
+				if (!credentials?.email || !credentials.password) {
+					return null;
+				}
+				if (credentials.email !== email || credentials.password !== password) {
+					return null;
+				}
+				const user = { id: "1", name: "Admin", email: "admin@admin.com" };
+				return user;
+			},
+		}),
+	],
 });
 
 export { handler as GET, handler as POST };

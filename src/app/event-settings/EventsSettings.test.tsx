@@ -9,17 +9,17 @@ import React from "react";
 const StoriesObject = composeStories(stories);
 
 describe("Events Settings", async () => {
-  for (const [key, story] of Object.entries(StoriesObject)) {
-    if (story.play)
-      test(`test${story.storyName
-        .replace(/([A-Z]|\d+)/g, " $1")
-        .toLowerCase()}`, async () => {
-        render(story());
-        await story.play({
-          // @ts-ignore
-          canvasElement: screen,
-          args: story.args,
-        });
-      });
-  }
+	for (const [key, story] of Object.entries(StoriesObject)) {
+		if (story.play)
+			test(`test${story.storyName
+				.replace(/([A-Z]|\d+)/g, " $1")
+				.toLowerCase()}`, async () => {
+				render(story());
+				await story.play({
+					// @ts-ignore
+					canvasElement: screen,
+					args: story.args,
+				});
+			});
+	}
 });

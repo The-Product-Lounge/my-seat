@@ -1,18 +1,18 @@
 {
-  "editor.formatOnSave": true,
-  "editor.codeActionsOnSave": ["source.fixAll.eslint"],
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "prettier.prettierPath": "./node_modules/prettier",
-  "cSpell.words": [
-    "autodocs",
-    "Docgen",
-    "fontsource",
-    "hookform",
-    "nextjs",
-    "promax",
-    "roboto",
-    "sesami",
-    "storysource",
-    "viewports"
-  ]
+	"editor.formatOnSave": true,
+	"editor.codeActionsOnSave": ["source.fixAll.eslint"],
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	// "prettier.prettierPath": "./node_modules/prettier",
+	"cSpell.words": [
+		"autodocs",
+		"Docgen",
+		"fontsource",
+		"hookform",
+		"nextjs",
+		"promax",
+		"roboto",
+		"sesami",
+		"storysource",
+		"viewports"
+	]
 }

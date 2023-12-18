@@ -14,14 +14,14 @@ import { getCanvas } from "@/stories/helper";
  * The metadata for the EventsSettingsPage stories.
  */
 const meta = {
-  parameters: {
-    nextjs: {
-      appDirectory: true,
-    },
-    layout: "fullscreen",
-  },
-  title: "Pages/Events Settings",
-  component: EventsSettings,
+	parameters: {
+		nextjs: {
+			appDirectory: true,
+		},
+		layout: "fullscreen",
+	},
+	title: "Pages/Events Settings",
+	component: EventsSettings,
 } satisfies Meta<typeof EventsSettings>;
 
 export default meta;
@@ -31,42 +31,42 @@ type Story = StoryObj<typeof meta>;
  * Example story for the EventsSettings component.
  */
 export const EventsSettingsExample: Story = {
-  play: async ({ canvasElement }) => {
-    const canvas = getCanvas(canvasElement);
-    expect(canvas.queryByRole("toolbar")).toBeInTheDocument();
-  },
+	play: async ({ canvasElement }) => {
+		const canvas = getCanvas(canvasElement);
+		expect(canvas.queryByRole("toolbar")).toBeInTheDocument();
+	},
 };
 
 /**
  * Example story for the EmptyEventsText component.
  */
 export const EmptyEventsTextExample: Story = {
-  play: async ({ canvasElement }) => {
-    const canvas = getCanvas(canvasElement);
-    expect(
-      canvas.queryByText(
-        "No upcoming events yet. Click ‘Create Event’ to get started!",
-      ),
-    ).toBeInTheDocument();
-  },
-  render: () => <EmptyEventsText />,
+	play: async ({ canvasElement }) => {
+		const canvas = getCanvas(canvasElement);
+		expect(
+			canvas.queryByText(
+				"No upcoming events yet. Click ‘Create Event’ to get started!",
+			),
+		).toBeInTheDocument();
+	},
+	render: () => <EmptyEventsText />,
 };
 
 /**
  * Example story for the Toolbar component.
  */
 export const EventsToolbarExample: Story = {
-  play: async ({ canvasElement }) => {
-    const canvas = getCanvas(canvasElement);
-    expect(canvas.queryByRole("toolbar")).toBeInTheDocument();
-    expect(canvas.queryByAltText("Logo")).toBeInTheDocument();
-    const createEventLink = canvas.getByRole("link");
-    expect(createEventLink).toBeInTheDocument();
-    expect(createEventLink).toHaveAttribute(
-      "href",
-      "/event-settings/create-event",
-    );
-    expect(canvas.queryByAltText("Create Event")).toBeInTheDocument();
-  },
-  render: () => <Toolbar />,
+	play: async ({ canvasElement }) => {
+		const canvas = getCanvas(canvasElement);
+		expect(canvas.queryByRole("toolbar")).toBeInTheDocument();
+		expect(canvas.queryByAltText("Logo")).toBeInTheDocument();
+		const createEventLink = canvas.getByRole("link");
+		expect(createEventLink).toBeInTheDocument();
+		expect(createEventLink).toHaveAttribute(
+			"href",
+			"/event-settings/create-event",
+		);
+		expect(canvas.queryByAltText("Create Event")).toBeInTheDocument();
+	},
+	render: () => <Toolbar />,
 };

@@ -14,27 +14,27 @@ import CircularProgress from "@mui/material/CircularProgress";
 // >;
 
 export interface ButtonProps extends MuiButtonProps {
-  /**
-   * Font weight of the button
-   * @default "600"
-   * @type "bold" | "normal" | "600"
-   * @memberof ButtonProps
-   * @optional
-   */
-  fontWeight?: "bold" | "normal" | "600";
+	/**
+	 * Font weight of the button
+	 * @default "600"
+	 * @type "bold" | "normal" | "600"
+	 * @memberof ButtonProps
+	 * @optional
+	 */
+	fontWeight?: "bold" | "normal" | "600";
 
-  /**
-   * If true, the button will show a CircularProgress instead of the children
-   * @default false
-   * @type boolean
-   * @memberof ButtonProps
-   * @optional
-   * @example
-   * <Button isLoading />
-   * <Button isLoading={false} />
-   * <Button isLoading={true} />
-   */
-  isLoading?: boolean;
+	/**
+	 * If true, the button will show a CircularProgress instead of the children
+	 * @default false
+	 * @type boolean
+	 * @memberof ButtonProps
+	 * @optional
+	 * @example
+	 * <Button isLoading />
+	 * <Button isLoading={false} />
+	 * <Button isLoading={true} />
+	 */
+	isLoading?: boolean;
 }
 
 /**
@@ -43,19 +43,19 @@ export interface ButtonProps extends MuiButtonProps {
  * @returns {React.ReactElement}
  */
 export const Button: React.FC<ButtonProps> = ({
-  children,
-  isLoading,
-  fontWeight,
-  disabled,
-  ...props
+	children,
+	isLoading,
+	fontWeight,
+	disabled,
+	...props
 }) => (
-  <MuiButton
-    {...props}
-    sx={{
-      fontWeight: fontWeight ?? "600",
-    }}
-    disabled={isLoading ?? disabled}
-  >
-    {isLoading ? <CircularProgress size={24} /> : children}
-  </MuiButton>
+	<MuiButton
+		{...props}
+		sx={{
+			fontWeight: fontWeight ?? "600",
+		}}
+		disabled={isLoading ?? disabled}
+	>
+		{isLoading ? <CircularProgress size={24} /> : children}
+	</MuiButton>
 );

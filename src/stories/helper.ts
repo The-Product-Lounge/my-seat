@@ -6,8 +6,8 @@ import { screen, within } from "@storybook/test";
  * @returns canvas typeof screen
  */
 export const getCanvas = (canvasElement: HTMLElement | typeof screen) => {
-  /* v8 ignore next 3 */
-  return (canvasElement instanceof HTMLElement
-    ? within(canvasElement)
-    : canvasElement) as unknown as typeof screen;
+	/* v8 ignore next 3 */
+	return (canvasElement instanceof HTMLElement
+		? within(canvasElement)
+		: canvasElement) as unknown as typeof screen;
 };
