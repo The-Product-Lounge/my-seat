@@ -6,8 +6,7 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
 	plugins: [react(), stubNextAssetImport()],
 	test: {
-		// globals: true,
-		environment: "jsdom",
+		environment: "happy-dom",
 		setupFiles: "./src/setUpTests.ts",
 	},
 	resolve: {
@@ -25,11 +24,11 @@ function stubNextAssetImport() {
 				const imgSrc = path.relative(process.cwd(), id);
 				return {
 					code: `export default {
-            src: '/img.jpg',
-            height: 40,
-            width: 40,
-            blurDataURL: 'data:image/png;base64,imagedata',
-          }`,
+            	 	src: '/img.jpg',
+            		height: 40,
+            		width: 40,
+            		blurDataURL: 'data:image/png;base64,imagedata',
+          			}`,
 				};
 			}
 		},

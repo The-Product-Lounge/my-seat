@@ -4,7 +4,7 @@ import { Button, ButtonProps } from "@/lib/components/inputs/Button.component";
 import Image from "next/image";
 
 import CreateEventImg from "@/../public/images/events/create event.svg";
-import { expect, fn, within } from "@storybook/test";
+import { expect, fn } from "@storybook/test";
 import { getCanvas } from "@/stories/helper";
 const meta = {
 	title: "Lib/Inputs/Button",
@@ -60,7 +60,7 @@ export const ButtonWithFontWeightBold: Story = {
 		btn.click();
 		expect(args.onClick).toHaveBeenCalled();
 		expect(btn).toHaveStyle({
-			"font-weight": 700,
+			"font-weight": "700",
 		});
 	},
 	args: {
