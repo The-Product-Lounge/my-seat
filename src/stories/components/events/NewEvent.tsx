@@ -3,8 +3,8 @@ import dayjs from "dayjs";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Image from "next/image";
-import CalendarIcon from "@/../public/images/Calendar.svg";
-import PlaceMarkIcon from "@/../public/images/PlaceMark.svg";
+import CalendarIcon from "@/../public/images/events/calendar icon.svg";
+import PlaceMarkIcon from "@/../public/images/events/mark icon.svg";
 
 interface NewEventProps {
 	details: string;
@@ -16,10 +16,12 @@ interface NewEventProps {
 function checkDateValid(startTime?: Date, endTime?: Date) {
 	let fullDateText = "Not Set";
 	if (startTime && endTime) {
-		const dateText = dayjs(startTime).format("DD/MM/YYYY");
-		const startTimeText = dayjs(startTime).format("HH:mm");
+		const startTimeText =
+			dayjs(startTime).format("DD/MM/YYYY") +
+			" " +
+			dayjs(startTime).format("HH:mm");
 		const endTimeText = dayjs(endTime).format("HH:mm");
-		fullDateText = dateText + " " + startTimeText + "-" + endTimeText;
+		fullDateText = startTimeText + "-" + endTimeText;
 	}
 	return fullDateText;
 }
@@ -30,40 +32,40 @@ const NewEvent: React.FC<NewEventProps> = ({
 	endTime,
 	place,
 }) => {
-	let dateText = checkDateValid(startTime, endTime);
-	const lineStyle: React.CSSProperties = {
-		marginBottom: "4px",
-	};
+	const dateText = checkDateValid(startTime, endTime);
 	return (
-		<Stack spacing={0.5}>
+		<>
 			<Typography variant="poppinsBold" fontSize="16pt" color="#282941">
 				{details}
 			</Typography>
 
 			<Typography variant="poppins" fontSize="13pt" color="#777781">
-				<Image
-					src={CalendarIcon}
-					width={18}
-					height={18}
-					alt="Calendar Icon"
-					style={{ marginRight: "3.75px" }}
-					priority={true}
-				/>
-				{dateText}
+				<Stack spacing={0.5}>
+					<div>
+						<Image
+							src={CalendarIcon}
+							width={18}
+							height={18}
+							alt="Calendar Icon"
+							style={{ marginRight: "3.75px" }}
+							priority={true}
+						/>
+						{dateText}
+					</div>
+					<div>
+						<Image
+							src={PlaceMarkIcon}
+							width={18}
+							height={18}
+							alt="PlaceMark Icon"
+							style={{ marginRight: "4px" }}
+							priority={true}
+						/>
+						{place || "Not Set"}
+					</div>
+				</Stack>
 			</Typography>
-
-			<Typography variant="poppins" fontSize="13pt" color="#777781">
-				<Image
-					src={PlaceMarkIcon}
-					width={18}
-					height={18}
-					alt="PlaceMark Icon"
-					style={{ marginRight: "4px" }}
-					priority={true}
-				/>
-				{place ? place : "Not Set"}
-			</Typography>
-		</Stack>
+		</>
 	);
 };
 
