@@ -16,17 +16,14 @@ interface NewEventProps {
 function checkDateValid(startTime?: Date, endTime?: Date) {
 	let fullDateText = "Not Set";
 	if (startTime && endTime) {
-		const startTimeText =
-			dayjs(startTime).format("DD/MM/YYYY") +
-			" " +
-			dayjs(startTime).format("HH:mm");
+		const startTimeText = dayjs(startTime).format("DD/MM/YYYY HH:mm");
 		const endTimeText = dayjs(endTime).format("HH:mm");
-		fullDateText = startTimeText + "-" + endTimeText;
+		fullDateText = `${startTimeText} - ${endTimeText}`;
 	}
 	return fullDateText;
 }
 
-const NewEvent: React.FC<NewEventProps> = ({
+export const EventCardMetadata: React.FC<NewEventProps> = ({
 	details,
 	startTime,
 	endTime,
@@ -68,5 +65,3 @@ const NewEvent: React.FC<NewEventProps> = ({
 		</>
 	);
 };
-
-export default NewEvent;
