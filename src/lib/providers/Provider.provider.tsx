@@ -1,6 +1,6 @@
-import ThemeRegistry from "./theme/MuiThemeRegistry.provider";
+import ThemeProvider from "./theme/ThemeProvider.provider";
 
 export default function Provider(props: { children: React.ReactNode }) {
 	const { children } = props;
-	return <ThemeRegistry options={{ key: "mui" }}>{children}</ThemeRegistry>;
+	return <ThemeProvider>{children}</ThemeProvider>;
 }

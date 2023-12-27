@@ -8,16 +8,7 @@ import { EmptyEventsText } from "./EmptyEventsText.component";
 
 export const EmptyEvents = () => {
 	return (
-		<div
-			style={{
-				display: "flex",
-				justifyContent: "center",
-				alignItems: "center",
-				flexDirection: "column",
-				gap: "32px",
-				marginTop: "64px",
-			}}
-		>
+		<div className="mt-16 flex flex-col items-center justify-center space-y-8">
 			<Image src={EmptyEventsImg} width="243" alt="Empty events" />
 			<EmptyEventsText />
 			<Link href="/event-settings/create-event">

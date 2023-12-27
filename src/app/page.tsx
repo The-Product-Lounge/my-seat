@@ -16,13 +16,8 @@ export default function Home() {
 			justifyContent="center"
 			alignItems="center"
 			minHeight="100vh"
-			style={{
-				background: `#fafafa url('${bgImage.src}') center`,
-				top: 0,
-				right: 0,
-				left: 0,
-				bottom: 0,
-			}}
+			className={`absolute inset-0 bg-[#fafafa] bg-cover bg-center bg-no-repeat`}
+			style={{ backgroundImage: `url('${bgImage.src}')` }}
 		>
 			{/* Center elements to the middle of the screen horizontally */}
 			<Grid container justifyContent={"center"} alignItems={"center"}>
@@ -31,45 +26,25 @@ export default function Home() {
 					<Paper variant="login">
 						<Paper
 							variant="logo"
-							sx={{
-								position: "absolute",
-								width: 68,
-								height: 68,
-								left: "50%",
-								right: "50%",
-								top: 0,
-								transform: "translate(-50%, -50%)",
-							}}
+							className="absolute left-1/2 right-1/2 top-0 h-16 w-16 -translate-x-1/2 -translate-y-1/2"
 						>
 							<Image
 								src={logo}
 								alt="logo"
-								style={{
-									display: "block",
-									width: 26,
-									position: "relative",
-									top: "50%",
-									left: "50%",
-									height: "auto",
-									transform: "translate(-50%, -50%)",
-								}}
+								className="relative left-1/2 top-1/2 block h-auto w-6 -translate-x-1/2 -translate-y-1/2 transform"
 							/>
 						</Paper>
 						<Stack
-							style={{ paddingTop: "50px" }}
+							className="pt-12"
 							alignItems="center"
 							justifyContent="center"
 							spacing={3}
 						>
 							<Stack alignItems="center" justifyContent="center">
-								<Typography
-									variant="poppinsBold"
-									fontSize="16px"
-									color="#1C1C28"
-								>
+								<Typography fontWeight="bold" fontSize="16px" color="#1C1C28">
 									Wait!
 								</Typography>
-								<Typography variant="poppins" fontSize="14px" color="#555770">
+								<Typography fontSize="14px" color="#555770">
 									What is the secret word?
 								</Typography>
 							</Stack>

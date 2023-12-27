@@ -10,45 +10,18 @@ export const Toolbar = () => {
 	return (
 		<MuiToolbar
 			role="toolbar"
-			sx={{
-				borderBottom: "1px solid #E0E0E0",
-			}}
+			className="border-0 border-b border-solid border-gray-300"
 		>
 			<Grid container>
-				<Grid
-					item
-					xs={2}
-					sx={{
-						display: "flex",
-						flexDirection: "column",
-						alignItems: "center",
-					}}
-				>
-					<div
-						style={{
-							borderRadius: "6px",
-							border: "0.5px solid #EBEBEB",
-							width: "38px",
-							height: "36px",
-						}}
-					>
+				<Grid item xs={2} className="flex flex-col items-center">
+					<div className="h-9 w-9 rounded-md border border-gray-300">
 						<Image src={LogoImg} alt="Logo" />
 					</div>
 				</Grid>
 				<Grid item xs={8}></Grid>
-				<Grid
-					item
-					xs={2}
-					sx={{
-						display: "flex",
-						justifyContent: "center",
-					}}
-				>
+				<Grid item xs={2} className="flex justify-center">
 					<Link
-						style={{
-							display: "flex",
-							alignItems: "center",
-						}}
+						className="flex items-center"
 						href="/event-settings/create-event"
 					>
 						<Image
