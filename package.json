@@ -71,7 +71,7 @@
 		"src/**/*.{js,ts,jsx,tsx}": [
 			"eslint --fix",
 			"prettier --write --ignore-unknown",
-			"vitest related --run"
+			"vitest related --passWithNoTests --run"
 		],
 		"*": "prettier --write --ignore-unknown"
 	}
