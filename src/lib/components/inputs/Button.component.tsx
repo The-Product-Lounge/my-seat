@@ -16,12 +16,12 @@ import CircularProgress from "@mui/material/CircularProgress";
 export interface ButtonProps extends MuiButtonProps {
 	/**
 	 * Font weight of the button
-	 * @default "600"
-	 * @type "bold" | "normal" | "600"
+	 * @default "font-semibold"
+	 * @type "font-bold" | "font-normal" | "font-semibold"
 	 * @memberof ButtonProps
 	 * @optional
 	 */
-	fontWeight?: "bold" | "normal" | "600";
+	fontWeight?: "font-bold" | "font-normal" | "font-semibold";
 
 	/**
 	 * If true, the button will show a CircularProgress instead of the children
@@ -51,9 +51,7 @@ export const Button: React.FC<ButtonProps> = ({
 }) => (
 	<MuiButton
 		{...props}
-		sx={{
-			fontWeight: fontWeight ?? "600",
-		}}
+		className={`${props.className ?? ""} ${fontWeight ?? "font-semibold"} `}
 		disabled={isLoading ?? disabled}
 	>
 		{isLoading ? <CircularProgress size={24} /> : children}

@@ -1,31 +1,10 @@
 import poppins from "@/lib/helpers/fonts.helper";
 import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 
-declare module "@mui/material/styles" {
-	interface TypographyVariants {
-		poppins: React.CSSProperties;
-		poppinsBold: React.CSSProperties;
-		poppinsSemiBold: React.CSSProperties;
-	}
-	interface TypographyVariantsOptions {
-		poppins?: React.CSSProperties;
-		poppinsBold?: React.CSSProperties;
-		poppinsSemiBold?: React.CSSProperties;
-	}
-}
-
 declare module "@mui/material/Paper" {
 	interface PaperPropsVariantOverrides {
 		logo: true;
 		login: true;
-	}
-}
-
-declare module "@mui/material/Typography" {
-	interface TypographyPropsVariantOverrides {
-		poppins: true;
-		poppinsBold: true;
-		poppinsSemiBold: true;
 	}
 }
 
@@ -35,17 +14,6 @@ let theme = createTheme({
 			textTransform: "none",
 		},
 		fontFamily: poppins.style.fontFamily,
-		poppins: {
-			fontFamily: poppins.style.fontFamily,
-		},
-		poppinsBold: {
-			fontFamily: poppins.style.fontFamily,
-			fontWeight: "bold",
-		},
-		poppinsSemiBold: {
-			fontFamily: poppins.style.fontFamily,
-			fontWeight: "600",
-		},
 	},
 	palette: {
 		error: {
