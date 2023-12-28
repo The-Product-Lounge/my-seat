@@ -1,9 +1,8 @@
-import type { Meta, ReactRenderer, StoryObj } from "@storybook/react";
+import type { Meta } from "@storybook/react";
 import type {
-	PlayFunction,
-	PlayFunctionContext,
-	Renderer,
-} from "@storybook/types";
+	StoryObjWithPlay,
+	StoryObjWithPlayReturnElement,
+} from "@/play-function";
 import { Button, ButtonProps } from "@/lib/components/inputs/Button.component";
 import Image from "next/image";
 
@@ -20,21 +19,9 @@ const meta = {
 } as Meta<ButtonProps>;
 
 export default meta;
-export type Story = StoryObj<typeof meta>;
+type StoryWithPlayReturnElement = StoryObjWithPlayReturnElement<typeof meta>;
+type StoryWithPlay = StoryObjWithPlay<typeof meta>;
 
-interface StoryWithPlayReturnElement extends Omit<Story, "play"> {
-	play: (
-		context: PlayFunctionContext<ReactRenderer, ButtonProps>,
-	) => HTMLElement | Promise<HTMLElement>;
-}
-
-interface StoryWithPlay extends Omit<Story, "play"> {
-	play: (
-		context: PlayFunctionContext<ReactRenderer, ButtonProps>,
-	) => void | Promise<void>;
-}
-
-// stories on Button with with children as label, disabled, variant, color, size, fullWidth
 export const ButtonWithOnlyLabel: StoryWithPlayReturnElement = {
 	play: async ({ args, canvasElement }) => {
 		const canvas = within(canvasElement);
@@ -62,7 +49,7 @@ export const ButtonWithFontWeight600: StoryWithPlay = {
 	},
 };
 
-export const ButtonWithFontWeightBold: Story = {
+export const ButtonWithFontWeightBold: StoryWithPlay = {
 	play: async (context) => {
 		await ButtonWithFontWeight600.play(context);
 	},
@@ -72,7 +59,7 @@ export const ButtonWithFontWeightBold: Story = {
 	},
 };
 
-export const ButtonWithFontWeightNormal: Story = {
+export const ButtonWithFontWeightNormal: StoryWithPlay = {
 	play: async (context) => {
 		await ButtonWithFontWeight600.play(context);
 	},
@@ -82,7 +69,7 @@ export const ButtonWithFontWeightNormal: Story = {
 	},
 };
 
-export const ButtonWithLoading: Story = {
+export const ButtonWithLoading: StoryWithPlay = {
 	play: async ({ args, canvasElement }) => {
 		const canvas = within(canvasElement);
 		const btn = canvas.getByRole("button");
@@ -96,7 +83,7 @@ export const ButtonWithLoading: Story = {
 	},
 };
 
-export const ButtonWithDisabled: Story = {
+export const ButtonWithDisabled: StoryWithPlay = {
 	play: async ({ args, canvasElement }) => {
 		const canvas = within(canvasElement);
 		const btn = canvas.getByRole("button");
@@ -109,7 +96,7 @@ export const ButtonWithDisabled: Story = {
 	},
 };
 
-export const SecondaryButtonWithIcon: Story = {
+export const SecondaryButtonWithIcon: StoryWithPlay = {
 	play: async (context) => {
 		await ButtonWithOnlyLabel.play(context);
 	},
