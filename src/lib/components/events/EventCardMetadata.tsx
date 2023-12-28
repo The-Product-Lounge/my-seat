@@ -15,13 +15,38 @@ interface EventCardMetadataProps {
 	startTime?: Date;
 	endTime?: Date;
 	place?: string;
-	image: {
-		url: string;
-		alt: string;
+	image?: {
+		url?: string;
+		alt?: string;
 	};
 	loungers?: number;
 	tables?: number;
 }
+
+const checkImageValid = (url?: string, alt?: string) => {
+	if (url && alt) {
+		return (
+			<Image
+				src={url}
+				width={400}
+				height={150}
+				alt={alt}
+				style={{ marginRight: "3.75px" }}
+				priority={true}
+			/>
+		);
+	}
+	return (
+		<div
+			style={{
+				width: 400,
+				height: 150,
+				backgroundColor: "black",
+				marginRight: "3.75px",
+			}}
+		/>
+	);
+};
 
 function checkDateValid(startTime?: Date, endTime?: Date) {
 	let fullDateText = "Not Set";
@@ -64,14 +89,7 @@ export const EventCardMetadata: React.FC<EventCardMetadataProps> = ({
 	return (
 		<Card sx={{ maxWidth: 345 }}>
 			<CardActionArea>
-				<Image
-					src={image?.url}
-					width={400}
-					height={150}
-					alt={image?.alt}
-					style={{ marginRight: "3.75px" }}
-					priority={true}
-				/>
+				{checkImageValid(image?.url, image?.alt)}
 				<CardContent>
 					<Stack spacing={2}>
 						<Typography variant="poppinsBold" fontSize="16pt" color="#282941">
