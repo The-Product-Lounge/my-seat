@@ -1,15 +1,20 @@
 import type { Meta, StoryObj } from "@storybook/react";
 // src/components/Button/Button.stories.js
-import React from "react";
 import { EventCardMetadata } from "@/lib/components/events/EventCardMetadata";
-import dayjs from "dayjs";
+//import { EventCard } from "@/lib/components/events/EventCard";
 
 const meta = {
-	title: "Components/Events/EventMetaData",
+	title: "Components/Events/EventCardMetadata",
 	component: EventCardMetadata,
 	argTypes: {
 		startTime: { control: "date" },
 		endTime: { control: "date" },
+		image: {
+			url: { control: "string" },
+			alt: { control: "string" },
+		},
+		loungers: { control: "number" },
+		tables: { control: "number" },
 	},
 } satisfies Meta<typeof EventCardMetadata>;
 
@@ -22,6 +27,12 @@ export const NewEventExample: Story = {
 		startTime: new Date(2023, 11, 31, 18, 30, 0, 0),
 		endTime: new Date(2023, 11, 31, 19, 30, 0, 0),
 		place: "Shay's roof",
+		image: {
+			url: "../../../public/images/events/rick cover image.png",
+			alt: "rick image",
+		},
+		loungers: 2,
+		tables: 1,
 	},
 };
 
