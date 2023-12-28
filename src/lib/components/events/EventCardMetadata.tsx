@@ -23,9 +23,16 @@ interface EventCardMetadataProps {
 	tables?: number;
 }
 
-const checkImageValid = (url?: string, alt?: string) => {
-	if (url && alt) {
-		return (
+const checkImageValid = (url?: string, alt?: string) => (
+	<div
+		style={{
+			width: 400,
+			height: 150,
+			backgroundColor: "black",
+			marginRight: "3.75px",
+		}}
+	>
+		{url && alt && (
 			<Image
 				src={url}
 				width={400}
@@ -34,45 +41,24 @@ const checkImageValid = (url?: string, alt?: string) => {
 				style={{ marginRight: "3.75px" }}
 				priority={true}
 			/>
-		);
-	}
-	return (
-		<div
-			style={{
-				width: 400,
-				height: 150,
-				backgroundColor: "black",
-				marginRight: "3.75px",
-			}}
-		/>
-	);
+		)}
+	</div>
+);
+
+const checkDateValid = (startTime?: Date, endTime?: Date) => {
+	if (!startTime || !endTime) return "Not Set";
+	return `${dayjs(startTime).format("DD/MM/YYYY HH:mm")} - ${dayjs(
+		endTime,
+	).format("HH:mm")}`;
 };
 
-function checkDateValid(startTime?: Date, endTime?: Date) {
-	let fullDateText = "Not Set";
-	if (startTime && endTime) {
-		const startTimeText = dayjs(startTime).format("DD/MM/YYYY HH:mm");
-		const endTimeText = dayjs(endTime).format("HH:mm");
-		fullDateText = `${startTimeText} - ${endTimeText}`;
-	}
-	return fullDateText;
-}
-
-function checkLoungersAndTablesValid(
+const checkLoungersAndTablesValid = (
 	nameOfItem: string,
 	numberOfItems?: number,
-) {
-	let loungersOrTablesText = `No ${nameOfItem}s`;
-	if (numberOfItems) {
-		if (numberOfItems > 1) {
-			loungersOrTablesText = `${numberOfItems} ${nameOfItem}s`;
-		}
-		if (numberOfItems == 1) {
-			loungersOrTablesText = `${numberOfItems} ${nameOfItem}`;
-		}
-	}
-	return loungersOrTablesText;
-}
+) =>
+	numberOfItems
+		? `${numberOfItems} ${nameOfItem}${numberOfItems > 1 ? "s" : ""}`
+		: `No ${nameOfItem}s`;
 
 export const EventCardMetadata: React.FC<EventCardMetadataProps> = ({
 	details,
@@ -86,6 +72,7 @@ export const EventCardMetadata: React.FC<EventCardMetadataProps> = ({
 	const dateText = checkDateValid(startTime, endTime);
 	const loungersText = checkLoungersAndTablesValid("lounger", loungers);
 	const tablesText = checkLoungersAndTablesValid("table", tables);
+
 	return (
 		<Card sx={{ maxWidth: 345 }}>
 			<CardActionArea>

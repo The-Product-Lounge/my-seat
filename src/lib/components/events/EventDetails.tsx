@@ -1,4 +1,3 @@
-// EventDetails.tsx
 import React from "react";
 import Stack from "@mui/material/Stack";
 import Image from "next/image";
@@ -12,28 +11,22 @@ interface EventDetailsProps {
 
 const EventDetails: React.FC<EventDetailsProps> = ({ dateText, place }) => (
 	<Stack spacing={0.5}>
-		<div>
-			<Image
-				src={CalendarIcon}
-				width={18}
-				height={18}
-				alt="Calendar Icon"
-				style={{ marginRight: "3.75px" }}
-				priority={true}
-			/>
-			{dateText}
-		</div>
-		<div>
-			<Image
-				src={PlaceMarkIcon}
-				width={18}
-				height={18}
-				alt="PlaceMark Icon"
-				style={{ marginRight: "4px" }}
-				priority={true}
-			/>
-			{place || "Not Set"}
-		</div>
+		{[
+			{ icon: CalendarIcon, label: dateText },
+			{ icon: PlaceMarkIcon, label: place || "Not Set" },
+		].map(({ icon, label }, index) => (
+			<div key={index}>
+				<Image
+					src={icon}
+					width={18}
+					height={18}
+					alt={`${label} Icon`}
+					style={{ marginRight: index === 0 ? "3.75px" : "4px" }}
+					priority={true}
+				/>
+				{label}
+			</div>
+		))}
 	</Stack>
 );
 

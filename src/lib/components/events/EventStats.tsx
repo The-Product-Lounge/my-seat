@@ -1,4 +1,3 @@
-// EventStats.tsx
 import React from "react";
 import Stack from "@mui/material/Stack";
 import Image from "next/image";
@@ -15,32 +14,24 @@ const EventStats: React.FC<EventStatsProps> = ({
 	tablesText,
 }) => (
 	<Stack spacing={1.5}>
-		<div>
-			<Stack direction="row" spacing={1.75}>
-				<div>
+		<Stack direction="row" spacing={1.75}>
+			{[
+				{ icon: LoungerIcon, text: loungersText },
+				{ icon: TableIcon, text: tablesText },
+			].map(({ icon, text }, index) => (
+				<div key={index}>
 					<Image
-						src={LoungerIcon}
+						src={icon}
 						width={18}
 						height={18}
-						alt="Lounger Icon"
+						alt={`${text} Icon`}
 						style={{ marginRight: "2px" }}
 						priority={true}
 					/>
-					{loungersText}
+					{text}
 				</div>
-				<div>
-					<Image
-						src={TableIcon}
-						width={18}
-						height={18}
-						alt="Table Icon"
-						style={{ marginRight: "2px" }}
-						priority={true}
-					/>
-					{tablesText}
-				</div>
-			</Stack>
-		</div>
+			))}
+		</Stack>
 	</Stack>
 );
 
