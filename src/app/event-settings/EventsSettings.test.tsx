@@ -14,10 +14,9 @@ describe("Events Settings", async () => {
 			test(`test${story.storyName
 				.replace(/([A-Z]|\d+)/g, " $1")
 				.toLowerCase()}`, async () => {
-				render(story());
+				const { container } = render(story());
 				await story.play({
-					// @ts-ignore
-					canvasElement: screen,
+					canvasElement: container,
 					args: story.args,
 				});
 			});

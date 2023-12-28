@@ -5,8 +5,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { TextField } from "@/lib/components/inputs/textfield/Textfield.component";
-import { getCanvas } from "@/stories/helper";
-import { expect, userEvent } from "@storybook/test";
+import { expect, userEvent, within } from "@storybook/test";
 
 const meta = {
 	title: "Lib/Inputs/Textfield",
@@ -25,7 +24,7 @@ type Story = StoryObj<typeof meta>;
  */
 export const TextfieldWithOnlyLabel: Story = {
 	play: async ({ canvasElement, args }) => {
-		const canvas = getCanvas(canvasElement);
+		const canvas = within(canvasElement);
 		expect(canvas.queryByLabelText(args.label as string)).toBeInTheDocument();
 		const textfield =
 			args.type === "password"
@@ -89,7 +88,7 @@ export const PasswordTextfieldWithOnlyLabel: Story = {
 	play: async (context) => {
 		await TextfieldWithOnlyLabel.play?.(context);
 		const { canvasElement, args } = context;
-		const canvas = getCanvas(canvasElement);
+		const canvas = within(canvasElement);
 		const textfield = canvas.getByLabelText(args.label as string);
 
 		// Check if the password is hidden

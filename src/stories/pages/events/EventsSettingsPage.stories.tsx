@@ -7,8 +7,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import EventsSettings from "@/app/event-settings/page";
 import { EmptyEventsText } from "@/app/event-settings/EmptyEventsText.component";
 import { Toolbar } from "@/app/event-settings/Toolbar.component";
-import { expect, userEvent } from "@storybook/test";
-import { getCanvas } from "@/stories/helper";
+import { expect, userEvent, within } from "@storybook/test";
 
 /**
  * The metadata for the EventsSettingsPage stories.
@@ -32,7 +31,7 @@ type Story = StoryObj<typeof meta>;
  */
 export const EventsSettingsExample: Story = {
 	play: async ({ canvasElement }) => {
-		const canvas = getCanvas(canvasElement);
+		const canvas = within(canvasElement);
 		expect(canvas.queryByRole("toolbar")).toBeInTheDocument();
 	},
 };
@@ -42,7 +41,7 @@ export const EventsSettingsExample: Story = {
  */
 export const EmptyEventsTextExample: Story = {
 	play: async ({ canvasElement }) => {
-		const canvas = getCanvas(canvasElement);
+		const canvas = within(canvasElement);
 		expect(
 			canvas.queryByText(
 				"No upcoming events yet. Click ‘Create Event’ to get started!",
@@ -57,7 +56,7 @@ export const EmptyEventsTextExample: Story = {
  */
 export const EventsToolbarExample: Story = {
 	play: async ({ canvasElement }) => {
-		const canvas = getCanvas(canvasElement);
+		const canvas = within(canvasElement);
 		expect(canvas.queryByRole("toolbar")).toBeInTheDocument();
 		expect(canvas.queryByAltText("Logo")).toBeInTheDocument();
 		const createEventLink = canvas.getByRole("link");

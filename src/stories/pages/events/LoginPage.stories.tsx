@@ -3,12 +3,19 @@
  */
 
 import type { Meta, StoryObj } from "@storybook/react";
-import { userEvent, expect, waitFor, Mock, screen, fn } from "@storybook/test";
+import {
+	userEvent,
+	expect,
+	waitFor,
+	Mock,
+	screen,
+	fn,
+	within,
+} from "@storybook/test";
 import HomePage from "@/app/page";
 
 import { LoginForm } from "@/app/LoginForm.component";
 import { signIn as signInMod } from "next-auth/react";
-import { getCanvas } from "@/stories/helper";
 
 const signIn = signInMod as Mock;
 
@@ -70,7 +77,7 @@ const fillForm = async ({
  */
 export const HomePageExample: Story = {
 	play: async ({ canvasElement }) => {
-		const canvas = getCanvas(canvasElement);
+		const canvas = within(canvasElement);
 		expect(canvas.queryByText("Wait!")).toBeInTheDocument();
 		expect(canvas.queryByText("What is the secret word?")).toBeInTheDocument();
 		expect(
@@ -88,7 +95,7 @@ export const HomePageExample: Story = {
  */
 export const LoginFormExample: Story = {
 	play: async ({ canvasElement }) => {
-		const canvas = getCanvas(canvasElement);
+		const canvas = within(canvasElement);
 
 		const btn = canvas.getByRole("button", { name: "Open sesami!" });
 		btn.onclick = fn();
@@ -116,7 +123,7 @@ export const LoginFormExample: Story = {
  */
 export const LoginFormWrongCredentials: Story = {
 	play: async ({ canvasElement }) => {
-		const canvas = getCanvas(canvasElement);
+		const canvas = within(canvasElement);
 		const email = "bla@bla.bla";
 		const password = "bla";
 
@@ -149,7 +156,7 @@ export const LoginFormWrongCredentials: Story = {
  */
 export const LoginFromWithoutEmail: Story = {
 	play: async ({ canvasElement }) => {
-		const canvas = getCanvas(canvasElement);
+		const canvas = within(canvasElement);
 		await fillForm({
 			canvas,
 			email: "",
@@ -165,7 +172,7 @@ export const LoginFromWithoutEmail: Story = {
  */
 export const LoginFromWithoutPassword: Story = {
 	play: async ({ canvasElement }) => {
-		const canvas = getCanvas(canvasElement);
+		const canvas = within(canvasElement);
 		await fillForm({
 			canvas,
 			email: "Bla@bla.bla",
@@ -182,7 +189,7 @@ export const LoginFromWithoutPassword: Story = {
  */
 export const LoginFromWithoutPasswordAndEmail: Story = {
 	play: async ({ canvasElement }) => {
-		const canvas = getCanvas(canvasElement);
+		const canvas = within(canvasElement);
 		await fillForm({
 			canvas,
 			email: "",
@@ -200,7 +207,7 @@ export const LoginFromWithoutPasswordAndEmail: Story = {
  */
 export const LoginFormTimeout: Story = {
 	play: async ({ canvasElement }) => {
-		const canvas = getCanvas(canvasElement);
+		const canvas = within(canvasElement);
 		await fillForm({
 			canvas,
 			email: "bla@bla.bla",
