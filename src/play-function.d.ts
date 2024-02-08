@@ -1,8 +1,4 @@
-import type {
-	Meta,
-	ReactRenderer,
-	StoryObj as storybookObj,
-} from "@storybook/react";
+import type { ReactRenderer } from "@storybook/react";
 import type { PlayFunctionContext } from "@storybook/types";
 
 /**

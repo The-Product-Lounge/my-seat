@@ -7,7 +7,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import EventsSettings from "@/app/event-settings/page";
 import { EmptyEventsText } from "@/app/event-settings/EmptyEventsText.component";
 import { Toolbar } from "@/app/event-settings/Toolbar.component";
-import { expect, userEvent, within } from "@storybook/test";
+import { expect, within } from "@storybook/test";
 
 /**
  * The metadata for the EventsSettingsPage stories.

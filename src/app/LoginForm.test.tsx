@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { useRouter } from "next/navigation";
 import { vi, test, expect, describe, afterEach } from "vitest";
 import * as stories from "@/stories/pages/events/LoginPage.stories";
