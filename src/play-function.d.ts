@@ -1,4 +1,4 @@
-import type { ReactRenderer } from "@storybook/react";
+import type { ReactRenderer, StoryObj } from "@storybook/react";
 import type { PlayFunctionContext } from "@storybook/types";
 
 /**
