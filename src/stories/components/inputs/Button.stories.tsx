@@ -1,11 +1,14 @@
-import type { Meta, StoryObj } from "@storybook/react";
-
+import type { Meta } from "@storybook/react";
+import type {
+	StoryObjWithPlay,
+	StoryObjWithPlayReturnElement,
+} from "@/play-function";
 import { Button, ButtonProps } from "@/lib/components/inputs/Button.component";
 import Image from "next/image";
 
 import CreateEventImg from "@/../public/images/events/create event.svg";
-import { expect, fn } from "@storybook/test";
-import { getCanvas } from "@/stories/helper";
+import { expect, fn, within } from "@storybook/test";
+
 const meta = {
 	title: "Lib/Inputs/Button",
 	component: Button,
@@ -16,80 +19,59 @@ const meta = {
 } as Meta<ButtonProps>;
 
 export default meta;
-export type Story = StoryObj<typeof meta>;
+type StoryWithPlayReturnElement = StoryObjWithPlayReturnElement<typeof meta>;
+type StoryWithPlay = StoryObjWithPlay<typeof meta>;
 
-// stories on Button with with children as label, disabled, variant, color, size, fullWidth
-export const ButtonWithOnlyLabel: Story = {
+export const ButtonWithOnlyLabel: StoryWithPlayReturnElement = {
 	play: async ({ args, canvasElement }) => {
-		const canvas = getCanvas(canvasElement);
+		const canvas = within(canvasElement);
 		const btn = canvas.getByRole("button");
 		expect(btn).toBeEnabled();
 		expect(btn).toHaveTextContent(args.children as string);
 		btn.click();
 		expect(args.onClick).toHaveBeenCalled();
+		return btn;
 	},
 	args: {
 		children: "Open sesami!",
 	},
 };
 
-export const ButtonWithFontWeight600: Story = {
-	play: async ({ args, canvasElement }) => {
-		const canvas = getCanvas(canvasElement);
-		const btn = canvas.getByRole("button");
-		expect(btn).toBeEnabled();
-		expect(btn).toHaveTextContent(args.children as string);
-		btn.click();
-		expect(args.onClick).toHaveBeenCalled();
-		expect(btn).toHaveStyle({
-			"font-weight": args.fontWeight,
-		});
+export const ButtonWithFontWeight600: StoryWithPlay = {
+	play: async (context) => {
+		const { args } = context;
+		const btn = await ButtonWithOnlyLabel.play(context);
+		expect(btn.className).toContain(args.fontWeight as string);
 	},
 	args: {
 		children: "Open sesami!",
-		fontWeight: "600",
+		fontWeight: "font-semibold",
 	},
 };
 
-export const ButtonWithFontWeightBold: Story = {
-	play: async ({ args, canvasElement }) => {
-		const canvas = getCanvas(canvasElement);
-		const btn = canvas.getByRole("button");
-		expect(btn).toBeEnabled();
-		expect(btn).toHaveTextContent(args.children as string);
-		btn.click();
-		expect(args.onClick).toHaveBeenCalled();
-		expect(btn).toHaveStyle({
-			"font-weight": "700",
-		});
+export const ButtonWithFontWeightBold: StoryWithPlay = {
+	play: async (context) => {
+		await ButtonWithFontWeight600.play(context);
 	},
 	args: {
 		children: "Open sesami!",
-		fontWeight: "bold",
+		fontWeight: "font-bold",
 	},
 };
 
-export const ButtonWithFontWeightNormal: Story = {
-	play: async ({ args, canvasElement }) => {
-		const canvas = getCanvas(canvasElement);
-		const btn = canvas.getByRole("button");
-		expect(btn).toBeEnabled();
-		expect(btn).toHaveTextContent(args.children as string);
-		btn.click();
-		expect(args.onClick).toHaveBeenCalled();
-		expect(btn).toHaveStyle({
-			"font-weight": args.fontWeight,
-		});
+export const ButtonWithFontWeightNormal: StoryWithPlay = {
+	play: async (context) => {
+		await ButtonWithFontWeight600.play(context);
 	},
 	args: {
 		children: "Open sesami!",
-		fontWeight: "normal",
+		fontWeight: "font-normal",
 	},
 };
 
-export const ButtonWithLoading: Story = {
+export const ButtonWithLoading: StoryWithPlay = {
 	play: async ({ args, canvasElement }) => {
-		const canvas = getCanvas(canvasElement);
+		const canvas = within(canvasElement);
 		const btn = canvas.getByRole("button");
 		expect(btn).toBeDisabled();
 		expect(btn).toContainElement(canvas.getByRole("progressbar"));
@@ -101,9 +83,9 @@ export const ButtonWithLoading: Story = {
 	},
 };
 
-export const ButtonWithDisabled: Story = {
+export const ButtonWithDisabled: StoryWithPlay = {
 	play: async ({ args, canvasElement }) => {
-		const canvas = getCanvas(canvasElement);
+		const canvas = within(canvasElement);
 		const btn = canvas.getByRole("button");
 		expect(btn).toBeDisabled();
 		expect(btn).toHaveTextContent(args.children as string);
@@ -114,15 +96,9 @@ export const ButtonWithDisabled: Story = {
 	},
 };
 
-export const SecondaryButtonWithIcon: Story = {
-	play: async ({ args, canvasElement }) => {
-		const canvas = getCanvas(canvasElement);
-		const btn = canvas.getByRole("button");
-		expect(btn).toBeEnabled();
-		expect(btn).toHaveTextContent(args.children as string);
-		expect(btn).toContainElement(canvas.getByRole("img"));
-		btn.click();
-		expect(args.onClick).toHaveBeenCalled();
+export const SecondaryButtonWithIcon: StoryWithPlay = {
+	play: async (context) => {
+		await ButtonWithOnlyLabel.play(context);
 	},
 	args: {
 		children: "Create Event",

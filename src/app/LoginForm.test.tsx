@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { useRouter } from "next/navigation";
 import { vi, test, expect, describe, afterEach } from "vitest";
 import * as stories from "@/stories/pages/events/LoginPage.stories";
@@ -37,69 +37,62 @@ describe("LoginForm", () => {
 	});
 
 	test("login page", async () => {
-		render(<HomePageExample />);
+		const { container } = render(<HomePageExample />);
 		await HomePageExample.play?.({
-			// @ts-ignore
-			canvasElement: screen,
+			canvasElement: container,
 		});
 	});
 
 	test("login in with valid credentials", async () => {
-		render(<LoginFormExample />);
+		const { container } = render(<LoginFormExample />);
 
 		await LoginFormExample.play?.({
-			// @ts-ignore
-			canvasElement: screen,
+			canvasElement: container,
 		});
 
 		expect(useRouter().push).toHaveBeenCalledWith("/event-settings");
 	});
 
 	test("login without email show error", async () => {
-		render(<LoginFromWithoutEmail />);
+		const { container } = render(<LoginFromWithoutEmail />);
 		await LoginFromWithoutEmail.play?.({
-			// @ts-ignore
-			canvasElement: screen,
+			canvasElement: container,
 		});
 
 		expect(useRouter().push).not.toHaveBeenCalled();
 	});
 
 	test("login without password show error", async () => {
-		render(<LoginFromWithoutPassword />);
+		const { container } = render(<LoginFromWithoutPassword />);
 		await LoginFromWithoutPassword.play?.({
-			// @ts-ignore
-			canvasElement: screen,
+			canvasElement: container,
 		});
 
 		expect(useRouter().push).not.toHaveBeenCalled();
 	});
 
 	test("login without password and email show error", async () => {
-		render(<LoginFromWithoutPasswordAndEmail />);
+		const { container } = render(<LoginFromWithoutPasswordAndEmail />);
 		await LoginFromWithoutPasswordAndEmail.play?.({
-			// @ts-ignore
-			canvasElement: screen,
+			canvasElement: container,
 		});
 
 		expect(useRouter().push).not.toHaveBeenCalled();
 	});
 
 	test("login with invalid credentials show error", async () => {
-		render(<LoginFormWrongCredentials />);
+		const { container } = render(<LoginFormWrongCredentials />);
 		await LoginFormWrongCredentials.play?.({
-			// @ts-ignore
-			canvasElement: screen,
+			canvasElement: container,
 		});
 
 		expect(useRouter().push).not.toHaveBeenCalled();
 	});
 
 	test("login with timeout shows progressbar", async () => {
-		render(<LoginFormTimeout />);
+		const { container } = render(<LoginFormTimeout />);
 		await LoginFormTimeout.play?.({
-			// @ts-ignore
-			canvasElement: screen,
+			canvasElement: container,
 		});
 
 		expect(useRouter().push).toHaveBeenCalled();
