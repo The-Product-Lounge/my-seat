@@ -35,6 +35,12 @@ export const ButtonWithOnlyLabel: StoryWithPlayReturnElement = {
 	args: {
 		children: "Open sesami!",
 	},
+	parameters: {
+		design: {
+			type: "figma",
+			url: "https://www.figma.com/file/W21DiaSty7siqr2iKaCpqk/MySeat?type=design&node-id=113-5393&mode=design&t=ssy0F29wbdZ5uOTS-4",
+		},
+	},
 };
 
 export const ButtonWithFontWeight600: StoryWithPlay = {
@@ -93,6 +99,12 @@ export const ButtonWithDisabled: StoryWithPlay = {
 	args: {
 		children: "Open sesami!",
 		disabled: true,
+	},
+	parameters: {
+		design: {
+			type: "figma",
+			url: "https://www.figma.com/file/W21DiaSty7siqr2iKaCpqk/MySeat?type=design&node-id=113-5393&mode=design&t=ssy0F29wbdZ5uOTS-4",
+		},
 	},
 };
 

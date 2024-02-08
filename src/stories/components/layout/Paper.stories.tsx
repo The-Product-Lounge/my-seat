@@ -29,6 +29,12 @@ export const LoginPaper: Story = {
 		variant: "login",
 		children: "Paper",
 	},
+	parameters: {
+		design: {
+			type: "figma",
+			url: "https://www.figma.com/file/W21DiaSty7siqr2iKaCpqk/MySeat?type=design&node-id=103-48789&mode=design&t=VaN9x2EyOS4CFHKy-0",
+		},
+	},
 };
 
 /**
@@ -38,5 +44,11 @@ export const LogoPaper: Story = {
 	args: {
 		variant: "logo",
 		children: "Paper",
+	},
+	parameters: {
+		design: {
+			type: "figma",
+			url: "https://www.figma.com/file/W21DiaSty7siqr2iKaCpqk/MySeat?type=design&node-id=113-5106&mode=design&t=ssy0F29wbdZ5uOTS-4",
+		},
 	},
 };
