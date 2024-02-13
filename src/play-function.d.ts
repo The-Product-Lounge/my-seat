@@ -8,7 +8,7 @@ import type { PlayFunctionContext } from "@storybook/types";
  */
 type StoryObjWithPlayReturnElement<T> = Omit<StoryObj<T>, "play"> & {
 	play: (
-		context: PlayFunctionContext<ReactRenderer, T["args"]>,
+		context: PlayFunctionContext<ReactRenderer, StoryObj<T>["args"]>,
 	) => HTMLElement | Promise<HTMLElement>;
 };
 
@@ -18,6 +18,6 @@ type StoryObjWithPlayReturnElement<T> = Omit<StoryObj<T>, "play"> & {
  */
 type StoryObjWithPlay<T> = Omit<StoryObj<T>, "play"> & {
 	play: (
-		context: PlayFunctionContext<ReactRenderer, T["args"]>,
+		context: PlayFunctionContext<ReactRenderer, StoryObj<T>["args"]>,
 	) => void | Promise<void>;
 };
