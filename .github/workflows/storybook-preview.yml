@@ -1,0 +1,29 @@
+name: Tests and Deploy Preview URL for Storybook on Pull Request
+permissions:
+  pull-requests: write
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  test_and_deploy_preview:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3.5.3
+      - uses: pnpm/action-setup@v3.0.0
+      - uses: actions/setup-node@v4.0.2
+        with:
+          cache: "pnpm"
+      - run: pnpm install
+      - run: pnpm test
+      - uses: amondnet/vercel-action@v25.1.1
+        id: vercel-deploy
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          vercel-org-id: ${{ secrets.ORG_ID}}
+          vercel-project-id: ${{ secrets.PROJECT_ID}}
+      - name: preview-url
+        run: |
+          echo ${{ steps.vercel-deploy.outputs.preview-url }}
