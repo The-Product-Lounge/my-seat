@@ -4,7 +4,6 @@ export interface EventCardDetailsProps {
 	 * @default ""
 	 * @example "https://via.placeholder.com/150"
 	 * @type string
-	 * @required
 	 */
 	thumbnail: string;
 
@@ -12,7 +11,6 @@ export interface EventCardDetailsProps {
 	 * Event title
 	 * @default ""
 	 * @type string
-	 * @required
 	 */
 	title: string;
 
@@ -20,7 +18,6 @@ export interface EventCardDetailsProps {
 	 * Start Date of the event
 	 * @default ""
 	 * @type string
-	 * @required
 	 */
 	startDate: string;
 
@@ -28,7 +25,6 @@ export interface EventCardDetailsProps {
 	 * End Time of the event
 	 * @default ""
 	 * @type string
-	 * @required
 	 */
 	endDate: string;
 }
