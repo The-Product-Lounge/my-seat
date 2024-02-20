@@ -5,12 +5,12 @@ export interface EventCardDetailsProps {
 	 * @example "https://via.placeholder.com/150"
 	 * @type string
 	 */
-	thumbnail: string;
+	thumbnail?: string;
 
 	/**
 	 * Event title
-	 * @default ""
 	 * @type string
+	 * @example "Event Title"
 	 */
 	title: string;
 
@@ -19,14 +19,14 @@ export interface EventCardDetailsProps {
 	 * @default ""
 	 * @type string
 	 */
-	startDate: string;
+	startDate?: string;
 
 	/**
 	 * End Time of the event
 	 * @default ""
 	 * @type string
 	 */
-	endDate: string;
+	endDate?: string;
 }
 
 const EventCardDetailsComponent: React.FC<EventCardDetailsProps> = (props) => {
