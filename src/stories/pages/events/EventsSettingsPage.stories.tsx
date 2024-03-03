@@ -2,12 +2,13 @@
  * @file This file contains the stories for the EventsSettingsPage component.
  */
 
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta } from "@storybook/react";
 
 import EventsSettings from "@/app/event-settings/page";
 import { EmptyEventsText } from "@/app/event-settings/EmptyEventsText.component";
 import { Toolbar } from "@/app/event-settings/Toolbar.component";
 import { expect, within } from "@storybook/test";
+import { StoryObjWithPlay } from "@/play-function";
 
 /**
  * The metadata for the EventsSettingsPage stories.
@@ -24,12 +25,12 @@ const meta = {
 } satisfies Meta<typeof EventsSettings>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type StoryWithPlay = StoryObjWithPlay<typeof meta>;
 
 /**
  * Example story for the EventsSettings component.
  */
-export const EventsSettingsExample: Story = {
+export const EventsSettingsExample: StoryWithPlay = {
 	play: async ({ canvasElement }) => {
 		const canvas = within(canvasElement);
 		expect(canvas.queryByRole("toolbar")).toBeInTheDocument();
@@ -39,7 +40,7 @@ export const EventsSettingsExample: Story = {
 /**
  * Example story for the EmptyEventsText component.
  */
-export const EmptyEventsTextExample: Story = {
+export const EmptyEventsTextExample: StoryWithPlay = {
 	play: async ({ canvasElement }) => {
 		const canvas = within(canvasElement);
 		expect(
@@ -54,7 +55,7 @@ export const EmptyEventsTextExample: Story = {
 /**
  * Example story for the Toolbar component.
  */
-export const EventsToolbarExample: Story = {
+export const EventsToolbarExample: StoryWithPlay = {
 	play: async ({ canvasElement }) => {
 		const canvas = within(canvasElement);
 		expect(canvas.queryByRole("toolbar")).toBeInTheDocument();

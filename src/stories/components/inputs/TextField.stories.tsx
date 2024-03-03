@@ -2,10 +2,11 @@
  * @file This file contains the storybook configuration for the TextField component.
  */
 
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta } from "@storybook/react";
 
 import { TextField } from "@/lib/components/inputs/textfield/Textfield.component";
 import { expect, userEvent, within } from "@storybook/test";
+import { StoryObjWithPlay } from "@/play-function";
 
 const meta = {
 	title: "Lib/Inputs/Textfield",
@@ -17,12 +18,12 @@ const meta = {
 } satisfies Meta<typeof TextField>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type StoryWithPlay = StoryObjWithPlay<typeof meta>;
 
 /**
  * Story for a Textfield with only a label.
  */
-export const TextfieldWithOnlyLabel: Story = {
+export const TextfieldWithOnlyLabel: StoryWithPlay = {
 	play: async ({ canvasElement, args }) => {
 		const canvas = within(canvasElement);
 		expect(canvas.queryByLabelText(args.label as string)).toBeInTheDocument();
@@ -58,9 +59,9 @@ export const TextfieldWithOnlyLabel: Story = {
 /**
  * Story for a Textfield with default text and a label.
  */
-export const TextfieldWithDefaultTextAndLabel: Story = {
+export const TextfieldWithDefaultTextAndLabel: StoryWithPlay = {
 	play: async (context) => {
-		await TextfieldWithOnlyLabel.play?.(context);
+		await TextfieldWithOnlyLabel.play(context);
 	},
 	args: {
 		defaultValue: "Default Text",
@@ -71,9 +72,9 @@ export const TextfieldWithDefaultTextAndLabel: Story = {
 /**
  * Story for a Textfield with an error message and a label.
  */
-export const TextfieldWithErrorAndLabel: Story = {
+export const TextfieldWithErrorAndLabel: StoryWithPlay = {
 	play: async (context) => {
-		await TextfieldWithOnlyLabel.play?.(context);
+		await TextfieldWithOnlyLabel.play(context);
 	},
 	args: {
 		label: "Label",
@@ -84,9 +85,9 @@ export const TextfieldWithErrorAndLabel: Story = {
 /**
  * Story for a password Textfield with only a label.
  */
-export const PasswordTextfieldWithOnlyLabel: Story = {
+export const PasswordTextfieldWithOnlyLabel: StoryWithPlay = {
 	play: async (context) => {
-		await TextfieldWithOnlyLabel.play?.(context);
+		await TextfieldWithOnlyLabel.play(context);
 		const { canvasElement, args } = context;
 		const canvas = within(canvasElement);
 		const textfield = canvas.getByLabelText(args.label as string);
@@ -111,9 +112,9 @@ export const PasswordTextfieldWithOnlyLabel: Story = {
 /**
  * Story for a password Textfield with default text and a label.
  */
-export const PasswordTextfieldWithDefaultTextAndLabel: Story = {
+export const PasswordTextfieldWithDefaultTextAndLabel: StoryWithPlay = {
 	play: async (context) => {
-		await PasswordTextfieldWithOnlyLabel.play?.(context);
+		await PasswordTextfieldWithOnlyLabel.play(context);
 	},
 	args: {
 		defaultValue: "Default Text",
@@ -125,9 +126,9 @@ export const PasswordTextfieldWithDefaultTextAndLabel: Story = {
 /**
  * Story for a password Textfield with an error message and a label.
  */
-export const PasswordTextfieldWithErrorAndLabel: Story = {
+export const PasswordTextfieldWithErrorAndLabel: StoryWithPlay = {
 	play: async (context) => {
-		await PasswordTextfieldWithOnlyLabel.play?.(context);
+		await PasswordTextfieldWithOnlyLabel.play(context);
 	},
 	args: {
 		label: "Label",

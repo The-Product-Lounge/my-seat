@@ -3,15 +3,7 @@
  */
 
 import type { Meta, StoryObj } from "@storybook/react";
-import {
-	userEvent,
-	expect,
-	waitFor,
-	Mock,
-	screen,
-	fn,
-	within,
-} from "@storybook/test";
+import { userEvent, expect, waitFor, Mock, fn, within } from "@storybook/test";
 import HomePage from "@/app/page";
 
 import { LoginForm } from "@/app/LoginForm.component";
@@ -47,7 +39,7 @@ const fillForm = async ({
 	email,
 	password,
 }: {
-	canvas: typeof screen;
+	canvas: ReturnType<typeof within>;
 	email: string;
 	password: string;
 }) => {
@@ -97,6 +89,7 @@ export const LoginFormExample: Story = {
 	play: async ({ canvasElement }) => {
 		const canvas = within(canvasElement);
 
+		// Mock button onclick and form onsubmit
 		const btn = canvas.getByRole("button", { name: "Open sesami!" });
 		btn.onclick = fn();
 		const form = canvas.getByRole("form");
@@ -108,6 +101,7 @@ export const LoginFormExample: Story = {
 			password: "bla",
 		});
 
+		// Assert the mocks
 		expect(btn.onclick).toHaveBeenCalled();
 		expect(form.onsubmit).toHaveBeenCalled();
 		expect(signIn).toHaveBeenCalledWith("credentials", {

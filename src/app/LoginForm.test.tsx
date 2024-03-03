@@ -38,7 +38,7 @@ describe("LoginForm", () => {
 
 	test("login page", async () => {
 		const { container } = render(<HomePageExample />);
-		await HomePageExample.play?.({
+		await HomePageExample.play({
 			canvasElement: container,
 		});
 	});
@@ -46,7 +46,7 @@ describe("LoginForm", () => {
 	test("login in with valid credentials", async () => {
 		const { container } = render(<LoginFormExample />);
 
-		await LoginFormExample.play?.({
+		await LoginFormExample.play({
 			canvasElement: container,
 		});
 
@@ -55,7 +55,7 @@ describe("LoginForm", () => {
 
 	test("login without email show error", async () => {
 		const { container } = render(<LoginFromWithoutEmail />);
-		await LoginFromWithoutEmail.play?.({
+		await LoginFromWithoutEmail.play({
 			canvasElement: container,
 		});
 
@@ -64,7 +64,7 @@ describe("LoginForm", () => {
 
 	test("login without password show error", async () => {
 		const { container } = render(<LoginFromWithoutPassword />);
-		await LoginFromWithoutPassword.play?.({
+		await LoginFromWithoutPassword.play({
 			canvasElement: container,
 		});
 
@@ -73,7 +73,7 @@ describe("LoginForm", () => {
 
 	test("login without password and email show error", async () => {
 		const { container } = render(<LoginFromWithoutPasswordAndEmail />);
-		await LoginFromWithoutPasswordAndEmail.play?.({
+		await LoginFromWithoutPasswordAndEmail.play({
 			canvasElement: container,
 		});
 
@@ -82,7 +82,7 @@ describe("LoginForm", () => {
 
 	test("login with invalid credentials show error", async () => {
 		const { container } = render(<LoginFormWrongCredentials />);
-		await LoginFormWrongCredentials.play?.({
+		await LoginFormWrongCredentials.play({
 			canvasElement: container,
 		});
 
@@ -91,7 +91,7 @@ describe("LoginForm", () => {
 
 	test("login with timeout shows progressbar", async () => {
 		const { container } = render(<LoginFormTimeout />);
-		await LoginFormTimeout.play?.({
+		await LoginFormTimeout.play({
 			canvasElement: container,
 		});
 
