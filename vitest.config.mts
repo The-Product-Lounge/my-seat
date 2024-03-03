@@ -24,7 +24,7 @@ function stubNextAssetImport() {
 				const imgSrc = path.relative(process.cwd(), id);
 				return {
 					code: `export default {
-            	 	src: '/img.jpg',
+            	 	src: '/${imgSrc}',
             		height: 40,
             		width: 40,
             		blurDataURL: 'data:image/png;base64,imagedata',
