@@ -21,6 +21,9 @@ export const EventBackgroundExample: StoryWithPlay = {
 			args.url as string,
 		);
 	},
+	args: {
+		url: "https://example.com/image.jpg",
+	},
 };
 
 export const EventBackgroundExampleWithNoImage: StoryWithPlay = {
