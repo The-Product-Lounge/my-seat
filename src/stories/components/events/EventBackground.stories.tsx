@@ -1,18 +1,7 @@
 import type { Meta } from "@storybook/react";
 import type { StoryObjWithPlay } from "@/play-function";
 import { expect, within } from "@storybook/test";
-
-/**
- * EventBackgroundProps
- */
-interface EventBackgroundProps {
-	/**
-	 * The url of the background image
-	 */
-	url: string;
-}
-
-const EventBackground = (props: EventBackgroundProps) => <>Example {props} </>;
+import { EventBackground } from "@/lib/components/events/EventBackground";
 
 const meta = {
 	title: "Example/EventBackground",
