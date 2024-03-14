@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { EventBackground } from "@/lib/components/events/EventBackground";
 
 const meta = {
-	title: "Example/EventBackground",
+	title: "lib/components/events/Event Background",
 	component: EventBackground,
 	tags: ["autodocs"],
 } as Meta<typeof EventBackground>;
